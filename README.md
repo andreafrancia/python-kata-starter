@@ -73,7 +73,17 @@ $ git add requirements.txt
 $ git commit -m "Adding requirements.txt"
 ```
 
+The requirements.txt file can be later used to restore all the libraries using 
+the `-r` option
 
+```bash
+$ pip install -r requirements.txt
+Collecting PyYAML==6.0.1 (from -r requirements.txt (line 1))
+  Using cached PyYAML-6.0.1-cp311-cp311-macosx_11_0_arm64.whl.metadata (2.1 kB)
+Using cached PyYAML-6.0.1-cp311-cp311-macosx_11_0_arm64.whl (167 kB)
+Installing collected packages: PyYAML
+Successfully installed PyYAML-6.0.1
+```
 
 
 
