@@ -29,6 +29,7 @@ $ cat .gitignore
 The environment can be used only if it is activated.
 ```bash
 $ source .venv/bin/activate
+(.venv) $
 ```
 
 After sourcing this script the shell will load some environment variables that
@@ -43,7 +44,7 @@ just using the `pip` command.
 For example if we want need a yaml library we can install
 
 ```bash
-pip install PyYAML
+(.venv) $ pip install PyYAML
 ```
 
 Unfortunately this is operation will be not saved automatically in any 
@@ -56,7 +57,7 @@ used to reproduce a similar environment in another machine.
 To see the output of the command we need just to call it:
 
 ```bash
-$ pip freeze
+(.venv) $ pip freeze
 PyYAML==6.0.1
 ```
 
@@ -64,26 +65,81 @@ It's common to save the output of the command in a file called requirements.txt
 in order to be used later for reinstalling all the dependencies.
 
 ```bash
-$ pip freeze > requirements.txt
+(.venv) $ pip freeze > requirements.txt
 ```
 
 Usually this file is tracked using version control.
 ```bash
-$ git add requirements.txt
-$ git commit -m "Adding requirements.txt"
+(.venv) $ git add requirements.txt
+(.venv) $ git commit -m "Adding requirements.txt"
 ```
 
 The requirements.txt file can be later used to restore all the libraries using 
 the `-r` option
 
 ```bash
-$ pip install -r requirements.txt
+(.venv) $ pip install -r requirements.txt
 Collecting PyYAML==6.0.1 (from -r requirements.txt (line 1))
   Using cached PyYAML-6.0.1-cp311-cp311-macosx_11_0_arm64.whl.metadata (2.1 kB)
 Using cached PyYAML-6.0.1-cp311-cp311-macosx_11_0_arm64.whl (167 kB)
 Installing collected packages: PyYAML
 Successfully installed PyYAML-6.0.1
 ```
+
+Is not mandatory to insert the library version, it can be omitted, for kata I 
+prefer use the last images of the libraries.
+
+```bash
+(.venv) $ pip uninstall PyYAML
+(.venv) $ vim requirements.txt
+(.venv) $ cat requirements.txt
+PyYAML
+(.venv) $ pip install -r requirements.txt
+Collecting PyYAML (from -r requirements.txt (line 1))
+  Using cached PyYAML-6.0.1-cp311-cp311-macosx_11_0_arm64.whl.metadata (2.1 kB)
+Using cached PyYAML-6.0.1-cp311-cp311-macosx_11_0_arm64.whl (167 kB)
+Installing collected packages: PyYAML
+Successfully installed PyYAML-6.0.1
+```
+
+# Exiting virtual environment and cleaning up
+In order to exit the virtual environment we need to call the `deactivate` 
+command.
+
+```bash
+(.venv) $ deactivate
+$ 
+```
+
+As you can see the prompt will lose the "(.venv) " prefix.
+
+The environment can be completely deleted if you want.
+```bash
+$ rm -Rfv .venv
+```
+
+# Libraries needed for testing
+
+## Standard libraries
+
+Python itself already include a testing library called `unittest`. It's a solid
+and portable solution, and you don't necessarily need other libraries. It 
+already includes a mock library called `unittest.mock`.
+
+The official documentation is:
+ - https://docs.python.org/3/library/unittest.html
+ - https://docs.python.org/3/library/unittest.mock.html
+
+## Another useful library for testing: pytest
+
+PyTest is a third party library with a lighter-weight syntax for writing tests 
+(as cited in the unittest documentation) which provides some useful test tagging
+mechanism that can be used to set apart integration tests. I use it in the 
+trash-cli project.
+
+I think is a good choice for professional project if you don't have limitation 
+on which library you can add to the project.
+
 
 
 
