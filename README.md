@@ -140,7 +140,30 @@ trash-cli project.
 I think is a good choice for professional project if you don't have limitation 
 on which library you can add to the project.
 
+When I start a kata I just add the pytest library in the requirements.txt file:
+```bash
+(.venv) $ echo pytest >> requirements.txt
+(.venv) $ cat requirements.txt
+PyYAML
+pytest
+(.venv) $ pip install -r requirements.txt
+```
 
+Some IDE like PyCharm recognized the requirements.txt file and will install
+automatically the libraries listed in there.
+
+There is a little problem with JetBrains IDE (like PyCharm), they don't always
+understand that always want to use the virtual environment under the .venv 
+subdirectory of the project. 
+
+This can be solved from the Python Interpreter in Preferences.
+
+![pycharm-python-interpreter.png](images/pycharm-python-interpreter.png)
+
+* You need to click Add Interpreter > Add Local Interpreter...
+* Then: Virtualenv environment > Existing
+* At this point you should choose the path that points to:
+  - `<YOUR PROJECT DIR>/.venv/bin/python` 
 
 
 
