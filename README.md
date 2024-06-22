@@ -1,3 +1,22 @@
+# TL;DR
+
+```bash
+$ python -m venv .venv
+$ source .venv/bin/activate
+$ (.venv) pip install -r requirements.txt
+...
+(.venv) $ pytest
+============================= test session starts ==============================
+platform darwin -- Python 3.11.6, pytest-8.2.2, pluggy-1.5.0
+rootdir: /Users/andrea/python-starter/python-kata-starter
+collected 2 items
+
+tests/test_message.py ..                                                 [100%]
+
+============================== 2 passed in 0.01s ===============================
+(.venv) $
+```
+
 # Setup the development environment
 
 We don't want that libraries used for this project will pollute the global 
